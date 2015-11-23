@@ -1,0 +1,68 @@
+.button {
+  margin: 10% auto;
+  cursor: pointer;
+  width: 200px;
+  height: 125px;
+  background-color: rgba(0, 0, 0, .25);
+  text-align: center;
+  line-height: 125px;
+  border-radius: 25px;
+  color: white;
+}
+
+.button:active {
+  vertical-align: top;
+  padding: 2px 2px 2px;
+}
+
+.color {
+  font-size: 30px;
+  display: block;
+}
+
+g {
+  opacity: .5;
+  fill: white;
+}
+
+svg {
+  width: 100px;
+  height: 100px;
+}
+
+.navigation {
+  margin: 0 auto;
+  width: 50%;
+}
+
+.back {
+  float: left;
+}
+
+.back:active {
+  vertical-align: top;
+  padding: 2px 2px 2px;
+}
+
+.forward {
+  float: right;
+}
+
+.forward:active {
+  vertical-align: top;
+  padding: 2px 2px 2px;
+}
+
+.info {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, .25);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}

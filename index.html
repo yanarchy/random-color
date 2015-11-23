@@ -1,0 +1,99 @@
+<HTML>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="button">
+      <span class="color"></span>
+    </div>
+
+    <div class="navigation">
+      <div class="back">
+        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+         width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+         preserveAspectRatio="xMidYMid meet">
+          <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+          <path d="M2147 4466 c-31 -13 -70 -32 -85 -42 -15 -9 -449 -350 -966 -758
+          -960 -757 -995 -786 -1047 -894 -84 -172 -60 -364 64 -523 61 -76 1900 -1528
+          2001 -1579 58 -29 82 -35 145 -38 91 -3 135 17 188 86 61 80 66 113 71 455 l4
+          307 1012 0 c975 0 1016 1 1090 20 119 30 209 82 301 175 93 92 145 182 175
+          301 19 72 20 112 20 584 0 472 -1 512 -20 584 -30 119 -82 209 -175 301 -92
+          93 -182 145 -301 175 -74 19 -115 20 -1090 20 l-1012 0 -4 308 c-5 341 -10
+          374 -71 454 -69 90 -179 114 -300 64z m-27 -871 l0 -355 1188 0 c1345 0 1247
+          6 1333 -80 78 -78 79 -83 79 -600 0 -517 -1 -522 -79 -600 -86 -86 12 -80
+          -1333 -80 l-1188 0 0 -356 c0 -211 -4 -354 -9 -352 -5 2 -387 301 -849 665
+          -641 506 -842 669 -852 694 -12 28 -11 36 6 66 13 24 276 238 854 693 459 363
+          838 659 843 660 4 0 7 -160 7 -355z"/>
+          </g>
+        </svg>
+      </div>
+      <div class="forward">
+        <svg version="1.0" class="forward" xmlns="http://www.w3.org/2000/svg"
+         width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+         preserveAspectRatio="xMidYMid meet">
+        <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+         stroke="none">
+        <path d="M2745 4468 c-50 -30 -100 -95 -122 -161 -14 -43 -17 -104 -21 -359
+        l-4 -308 -1012 0 c-975 0 -1016 -1 -1090 -20 -119 -30 -209 -82 -301 -175 -93
+        -92 -145 -182 -175 -301 -19 -72 -20 -112 -20 -584 0 -472 1 -512 20 -584 30
+        -119 82 -209 175 -301 92 -93 182 -145 301 -175 74 -19 115 -20 1090 -20
+        l1012 0 4 -307 c5 -342 10 -375 71 -455 53 -69 97 -89 188 -86 63 3 87 9 145
+        38 101 51 1940 1503 2001 1579 152 194 152 428 -1 622 -60 77 -1899 1528
+        -2000 1579 -58 29 -82 35 -145 38 -64 2 -82 -1 -116 -20z m1113 -1185 c620
+        -489 842 -670 852 -692 10 -25 10 -37 0 -62 -10 -22 -233 -204 -852 -692 -462
+        -364 -844 -663 -849 -665 -5 -2 -9 141 -9 352 l0 356 -1188 0 c-1345 0 -1247
+        -6 -1333 80 -78 78 -79 83 -79 600 0 517 1 522 79 600 86 86 -12 80 1333 80
+        l1188 0 0 356 c0 216 4 354 9 352 5 -1 387 -301 849 -665z"/>
+        </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="info"><a href="https://github.com/yanarchy/interpolation">Link on GitHub</a></div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        var colorStorage = [];
+        var futureStorage = [];
+        var initialColor = '#' + Math.random().toString(16).substr(-6);
+        var currentColor = null;
+
+        $('body').css('background-color', initialColor);
+        $('.color').html(initialColor);
+        colorStorage.push(initialColor);
+
+        var updateBackground = function () {
+          colorStorage.push(currentColor);
+          var randomColor = '#' + Math.random().toString(16).substr(-6);
+          $('body').css('background-color', randomColor);
+          $('.color').html(randomColor);
+          currentColor = randomColor;
+        };
+
+        var backward = function () {
+          var prev = colorStorage.pop();
+          if (!prev) return;
+          $('body').css('background-color', prev);
+          $('.color').html(prev);
+          futureStorage.push(prev);
+        }
+
+        var forward = function () {
+          var next = futureStorage.pop();
+          if (!next) return;
+          $('body').css('background-color', next);
+          $('.color').html(next);
+          colorStorage.push(next);
+        }
+
+        $('.button').on('click', updateBackground);
+        $('.back').on('click', backward);
+        $('.forward').on('click', forward);
+      });
+    </script>
+  </body>
+
+
+</HTML>
